@@ -8,32 +8,40 @@
 </head>
 <body>
  <div align="center">
-  <h1>Employee Register Form</h1>
-  <form action="<%= request.getContextPath() %>/redirect" method="post">
+  <h1>Add Tour Details</h1>
+  <form action="<%= "addtour" %>" method="post" enctype = "multipart/form-data">
    <table style="with: 80%">
     <tr>
-     <td>First Name</td>
-     <td><input type="text" name="firstName" /></td>
+     <td>Package Id</td>
+     <td><input type="text" name="packageid" /></td>
     </tr>
     <tr>
-     <td>Last Name</td>
-     <td><input type="text" name="lastName" /></td>
+     <td>Destination</td>
+     <td><input type="text" name="destination" /></td>
     </tr>
     <tr>
-     <td>UserName</td>
-     <td><input type="text" name="username" /></td>
+     <td>Price</td>
+     <td><input type="text" name="price" /></td>
     </tr>
     <tr>
-     <td>Password</td>
-     <td><input type="password" name="password" /></td>
+     <td>Description</td>
+     <td><input type="text" name="description" /></td>
     </tr>
     <tr>
-     <td>Address</td>
-     <td><input type="text" name="address" /></td>
+     <td>No Of Days</td>
+     <td><input type="text" name="numberofdays" /></td>
     </tr>
     <tr>
-     <td>Contact No</td>
-     <td><input type="text" name="contact" /></td>
+     <td>Hotels</td>
+     <td><input type="text" name="numberofhotels" /></td>
+    </tr>
+    <tr>
+     <td>Select Image:</td>
+  	<td><input type="file" name = "imagePath" /></td>
+    </tr>
+    <tr>
+     <td>Date</td>
+     <td><input type="text" name="publishDate" /></td>
     </tr>
    </table>
    <input type="submit" value="Submit" />

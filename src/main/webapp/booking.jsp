@@ -49,17 +49,17 @@
 <td><label> NO-OF-DAYS</label></td>
 <td><input type="text" name="uname "></td>
 </tr>
-<p>
+
 <tr>
 <td><label> DATE-OF-TOUR</label></td>
 <td><input type="text" name="name"></td>
 </tr>
-<p>
+
 <tr>
 <td><label>TOUR-PRICE</label></td>
 <td><input type="text" name="uname"></td>
 </tr>
-<p>
+
 <tr>
 <td><label>DATE-OF-BOOKING</label></td>
 <td><input type="text" name="uname"></td>

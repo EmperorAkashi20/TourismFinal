@@ -51,13 +51,13 @@ public class AddTourServlet extends HttpServlet {
 		String numberOfHotels = request.getParameter("numberofhotels");
 		String imagePath = request.getParameter("imagePath");
 		String publishDate = request.getParameter("publishDate");
-		Part file = request.getPart("imagePath");
+		Part file = request.getPart("image");
 		
 		String imageFileName = file.getSubmittedFileName();
 		System.out.println(imageFileName);
 		
 		String uploadPath = "/Users/rishabh/Desktop/WebApp/assets/"+imageFileName;
-		System.out.print(uploadPath);
+		//System.out.print(uploadPath);
 		
 		try {
 		

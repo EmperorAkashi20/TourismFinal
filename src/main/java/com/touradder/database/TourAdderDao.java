@@ -3,7 +3,6 @@ package com.touradder.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.touradder.bean.TourAdderBean;
@@ -55,8 +54,9 @@ public class TourAdderDao {
 			ps.setString(6, TourAdderBean.getNumberOfHotels());
 			ps.setString(7, TourAdderBean.getImagePath());
 			ps.setString(8, TourAdderBean.getPublishDate());
-
 			
+			
+			System.out.println(ps);			
 			ps.execute();
 			status = true;
 			System.out.println(status);

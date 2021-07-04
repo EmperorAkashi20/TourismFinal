@@ -36,8 +36,10 @@
      <td><input type="text" name="numberofhotels" /></td>
     </tr>
     <tr>
+    <td>Image Name</td>
+     <td><input type="text" name="imagePath" /></td>
      <td>Select Image:</td>
-  	<td><input type="file" name = "imagePath" /></td>
+  	<td><input type="file" name = "image" /></td>
     </tr>
     <tr>
      <td>Date</td>

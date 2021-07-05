@@ -1,23 +1,28 @@
 package com.user.register.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import java.sql.SQLException;
+
+import com.mysql.cj.Session;
+import com.user.register.bean.RegisterBean;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Random;
 
-import com.user.register.bean.LoginBean;
 
-public class LoginDao {
+
+
+public class RegiusterDao {
 	
 	private String dbUrl = "jdbc:mysql://localhost:3306/UserTable";
 	private String dbUserName = "root";
 	private String dbPassword = "\"NewPassword@2018\"";
-	private String dbDriver = "com.mysql.cj.jdbc.Driver";
+	private String dbDriver = "com.mysql.cj.jdbc.Driver";	
 	public static String encryptedpswd;
 	
 	public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
@@ -47,6 +52,11 @@ public class LoginDao {
   
         return hexString.toString();  
     } 
+    
+    public static String print(String input) {
+    	System.out.println(input);
+    	return input;
+    }
 	
 	
 	public void loadDriver(String dbDriver) {
@@ -70,39 +80,53 @@ public class LoginDao {
 		return con;
 	}
 	
+public boolean validate(RegisterBean registerBean) {
 	
-	public boolean validate(LoginBean loginBean) {
-		
-		try {
-			encryptedpswd = toHexString(getSHA(LoginBean.getPassword()));
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	Random rand = new Random();
+	long drand = (long)((rand.nextDouble()*10000000000L));
+	String userId = Long.toString(drand);
+	//System.out.println(drand);
+	
+	try {
+		encryptedpswd = toHexString(getSHA(registerBean.getPassword()));
+	} catch (NoSuchAlgorithmException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 		
 		loadDriver(dbDriver);
 		Connection con = getConnection();
 		boolean status = false;
 		
-		String sql = "select * from UserDetails where email = ? and password = ?";
+		String sql = "insert into UserDetails (userid, name, email, password, contact, address, nameOnCard, cardNumber, expiry)"+"values(?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement ps;
 		
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, LoginBean.getEmail());
-			ps.setString(2, encryptedpswd);
-			
-			ResultSet rs = ps.executeQuery();
-			status = rs.next();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(registerBean.getPassword().length()>8) {
+			try {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, userId);
+				ps.setString(2, registerBean.getName());
+				ps.setString(3, registerBean.getEmail());
+				ps.setString(4, encryptedpswd);
+				ps.setString(5, registerBean.getContact());
+				ps.setString(6, "");
+				ps.setString(7, "");
+				ps.setString(8, "");
+				ps.setString(9, "");
+				
+				ps.execute();
+				status = true;
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Password mismatch");
 		}
-		
 		return status;
-		
 	}
 
 }

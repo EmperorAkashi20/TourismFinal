@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.user.register.bean.LoginBean;
 import com.user.register.database.LoginDao;
@@ -46,7 +47,9 @@ public class LoginServlet extends HttpServlet {
 		
 		LoginDao loginDao = new LoginDao();
 		if(loginDao.validate(loginBean)) {
-			response.sendRedirect("loginsuccess.jsp");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("email", email);
+			response.sendRedirect("booking.jsp");
 		} else {
 			response.sendRedirect("allotment.jsp");
 		}

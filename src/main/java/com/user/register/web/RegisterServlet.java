@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.user.register.bean.RegisterBean;
+import com.user.register.database.RegiusterDao;
+
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -43,7 +46,25 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String contact = request.getParameter("contact");
+		String password = request.getParameter("password");
+		String rePass = request.getParameter("rePass");
+		
+		RegisterBean registerBean = new RegisterBean();
+		registerBean.setName(name);
+		registerBean.setEmail(email);
+		registerBean.setContact(contact);
+		registerBean.setPassword(password);
+		registerBean.setRepeatPassword(rePass);
+		
+		RegiusterDao registerDao = new RegiusterDao();
+		if(registerDao.validate(registerBean)) {
+			response.sendRedirect("loginsuccess.jsp");		
+			} else {
+				response.sendRedirect("index.jsp");
+			}
 	}
 
 }

@@ -49,25 +49,53 @@ public class AddTourServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String numberOfDays = request.getParameter("numberofdays");
 		String numberOfHotels = request.getParameter("numberofhotels");
-		String imagePath = request.getParameter("imagePath");
 		String publishDate = request.getParameter("publishDate");
+		String shortDesc = request.getParameter("shortdesc");
+		
 		Part file = request.getPart("image");
 		
+		
 		String imageFileName = file.getSubmittedFileName();
+		String imageFileName1 = file.getSubmittedFileName();
+		String imageFileName2 = file.getSubmittedFileName();
+		String imageFileName3 = file.getSubmittedFileName();
 		System.out.println(imageFileName);
 		
-		String uploadPath = "/Users/rishabh/Desktop/WebApp/assets/"+imageFileName;
+		String uploadPath = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName;
+		String uploadPath1 = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName1;
+		String uploadPath2 = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName2;
+		String uploadPath3 = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName3;
 		//System.out.print(uploadPath);
+		String imagePathDisplay = "images/"+imageFileName;
+		String imagePathDisplay1 = "images/"+imageFileName1;
+		String imagePathDisplay2 = "images/"+imageFileName2;
+		String imagePathDisplay3 = "images/"+imageFileName3;
 		
 		try {
 		
 		FileOutputStream fos = new FileOutputStream(uploadPath);
+		FileOutputStream fos1 = new FileOutputStream(uploadPath1);
+		FileOutputStream fos2 = new FileOutputStream(uploadPath2);
+		FileOutputStream fos3 = new FileOutputStream(uploadPath3);
+		
 		InputStream is = file.getInputStream();
+		InputStream is1 = file.getInputStream();
+		InputStream is2 = file.getInputStream();
+		InputStream is3 = file.getInputStream();
 		
 		byte[] data = new byte[is.available()];
 		is.read(data);
+		is1.read(data);
+		is2.read(data);
+		is3.read(data);
 		fos.write(data);
+		fos1.write(data);
+		fos2.write(data);
+		fos3.write(data);
 		fos.close();
+		fos1.close();
+		fos2.close();
+		fos3.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -79,11 +107,12 @@ public class AddTourServlet extends HttpServlet {
 		tourAdderBean.setDescription(description);
 		tourAdderBean.setNumberOfDays(numberOfDays);
 		tourAdderBean.setNumberOfHotels(numberOfHotels);
-		tourAdderBean.setImagePath(imageFileName);
+		tourAdderBean.setImagePath(imagePathDisplay);
 		tourAdderBean.setPublishDate(publishDate);
-		
-		
-		
+		tourAdderBean.setShortdesc(shortDesc);
+		tourAdderBean.setImage1fors(imagePathDisplay1);
+		tourAdderBean.setImage2fors(imagePathDisplay2);
+		tourAdderBean.setImage3fors(imagePathDisplay3);
 		
 		TourAdderDao tourAdderDao = new TourAdderDao();
 		if(tourAdderDao.validate(tourAdderBean)) {

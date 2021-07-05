@@ -24,6 +24,10 @@
      <td><input type="text" name="price" /></td>
     </tr>
     <tr>
+     <td>Short Description</td>
+     <td><input type="text" name="shortdesc" /></td>
+    </tr>
+    <tr>
      <td>Description</td>
      <td><input type="text" name="description" /></td>
     </tr>
@@ -32,7 +36,7 @@
      <td><input type="text" name="numberofdays" /></td>
     </tr>
     <tr>
-     <td>Hotels</td>
+     <td>No Of Hotels</td>
      <td><input type="text" name="numberofhotels" /></td>
     </tr>
     <tr>
@@ -42,9 +46,28 @@
   	<td><input type="file" name = "image" /></td>
     </tr>
     <tr>
+    <td>Image 1 for slide show </td>
+     <td><input type="text" name="imagePath" /></td>
+     <td>Select Image:</td>
+  	<td><input type="file" name = "imageforsone" /></td>
+    </tr>
+    <tr>
+     <td>Image 2 for slide show </td>
+     <td><input type="text" name="imagePath" /></td>
+     <td>Select Image:</td>
+  	<td><input type="file" name = "imageforstwo" /></td>
+    </tr>
+     <tr>
+     <td>Image 3 for slide show </td>
+     <td><input type="text" name="imagePath" /></td>
+     <td>Select Image:</td>
+  	<td><input type="file" name = "imageforsthree" /></td>
+    </tr>
+    <tr>
      <td>Date</td>
      <td><input type="text" name="publishDate" /></td>
     </tr>
+     <tr>
    </table>
    <input type="submit" value="Submit" />
   </form>

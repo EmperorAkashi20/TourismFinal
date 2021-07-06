@@ -53,13 +53,14 @@ public class AddTourServlet extends HttpServlet {
 		String shortDesc = request.getParameter("shortdesc");
 		
 		Part file = request.getPart("image");
-		
+		Part file1 = request.getPart("imageforsone");	
+		Part file2 = request.getPart("imageforstwo");
+		Part file3 = request.getPart("imageforsthree");
 		
 		String imageFileName = file.getSubmittedFileName();
-		String imageFileName1 = file.getSubmittedFileName();
-		String imageFileName2 = file.getSubmittedFileName();
-		String imageFileName3 = file.getSubmittedFileName();
-		System.out.println(imageFileName);
+		String imageFileName1 = file1.getSubmittedFileName();
+		String imageFileName2 = file2.getSubmittedFileName();
+		String imageFileName3 = file3.getSubmittedFileName();
 		
 		String uploadPath = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName;
 		String uploadPath1 = "/Users/rishabh/Desktop/WebApp/src/main/webapp/images/"+imageFileName1;
@@ -84,14 +85,20 @@ public class AddTourServlet extends HttpServlet {
 		InputStream is3 = file.getInputStream();
 		
 		byte[] data = new byte[is.available()];
+		byte[] data1 = new byte[is1.available()];
+		byte[] data2 = new byte[is2.available()];
+		byte[] data3 = new byte[is3.available()];
+		
 		is.read(data);
-		is1.read(data);
-		is2.read(data);
-		is3.read(data);
+		is1.read(data1);
+		is2.read(data2);
+		is3.read(data3);
+		
 		fos.write(data);
-		fos1.write(data);
-		fos2.write(data);
-		fos3.write(data);
+		fos1.write(data1);
+		fos2.write(data2);
+		fos3.write(data3);
+		
 		fos.close();
 		fos1.close();
 		fos2.close();

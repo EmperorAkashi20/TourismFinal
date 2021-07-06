@@ -23,17 +23,11 @@
 	
 	Statement statement1 = null;
 	ResultSet resultSet1 = null;
+	
+	
 %>
 
-<%
-try{ 
-connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-statement=connection.createStatement();
-String sql ="SELECT * FROM packages";
 
-resultSet = statement.executeQuery(sql);
-while(resultSet.next()){
-%>
 
 
 <!DOCTYPE html>
@@ -66,6 +60,9 @@ body {font-family: "Lato", sans-serif}
   background-color:green;
   color: white;
 }
+
+
+
 </style>
 <body> 
 
@@ -73,174 +70,121 @@ body {font-family: "Lato", sans-serif}
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PACKAGE</a>
-    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR DETAILS</a>
+    <a href="homeafterlogin.jsp" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PACKAGE DETAILS</a>
+    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BOOKING DETAILS</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+     <div style="text-align:right">Hello, <%=session.getAttribute("email") %></div>
+     <div style="text-align:right">Hello, <%=session.getAttribute("userid") %></div>
     <div class="w3-dropdown-hover w3-hide-small">
      
       </div>
     </div>
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
   </div>
 
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PACKAGE</a>
-  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR DETAILS</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
- 
-</div>
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
 
+
   <!-- Automatic Slideshow Images -->
+   
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/la.jpg" style="width:100%">
+    <img src="images/1.jpg" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>BURJ KHALIFA</h3>
-      <p><b></b></p>  
+      
+      <p><b></b></p>   
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/ny.jpg" style="width:100%">
+    <img src="images/2.jpg" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>SKI DUBAI</h3>
+    
       <p><b></b></p>    
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="/w3images/chicago.jpg" style="width:100%">
+    <img src="images/3.jpg" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>HINDI LANE</h3>
       <p><b></b></p>    
     </div>
   </div>
+  
+
 
   <!-- The Band Section -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-    <h2 class="w3-wide"><%=resultSet.getString("title").toUpperCase() %> TOUR PACKAGE</h2>
-    <p class="w3-opacity"><i><%=resultSet.getString("title") %> Delight Tour</i></p>
-    <p class="w3-justify"><%=resultSet.getString("description") %></p>
-    <div class="w3-row w3-padding-32">
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1700px" id="band">
+    <h2 class="w3-wide"><%=session.getAttribute("destination").toString().toUpperCase() %> TOUR PACKAGE</h2>
+    <p class="w3-opacity"><i><%=session.getAttribute("destination").toString() %> Delight Tour</i></p>
+    <p class="w3-justify"><%=session.getAttribute("description") %></p>
+    <div class="w3-row w3-padding-102">
       <div class="w3-third">
-        <p>Burj Khalifa</p>
-        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+        <p>Place 1</p>
+        <img src="<%=session.getAttribute("image") %>" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
       </div>
       <div class="w3-third">
-        <p>Wildwadi Park</p>
-        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+        <p>Place 2</p>
+        <img src="<%=session.getAttribute("image") %>" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
       </div>
       <div class="w3-third">
-        <p><%=session.getAttribute("price") %></p>
-        <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%" border="2px">
+        <p>Place 3</p>
+        <img src="<%=session.getAttribute("image") %>" class="w3-round" alt="Random Name" style="width:60%" >
       </div>
     </div>
   </div>
+<% try{ 
+connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
+statement=connection.createStatement();
+String sql ="SELECT * FROM packages";
 
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+  
   <!-- The Tour bSection -->
   <div class="w3-black" id="tour">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">BOOKING DETAILS</h2>
       <p class="w3-opacity w3-center"><i> book your tour now</i></p><br>
-        <form action="/action_page.php" target="_blank">
-        <p class="w3-opacity"><i> Your name</i></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p><br>
+        <form action="addtocart" method="post">
+       <!--  <p class="w3-opacity"><i> Your name</i></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="name"></p><br> -->
        <p class="w3-opacity "><i> enter number of people</i></p>
-      <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p><br>
+      <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="numberofpeople"></p><br>
             <p class="w3-opacity "><i>enter the starting date of your tour</i></p>
-      <p><input class="w3-input " type="datetime-local" placeholder="Tour start date" required name="date" value="2020-11-16T20:00"></p><br>
+      <p><input class="w3-input " type="datetime-local" placeholder="Tour start date" required name="fromdate" value="2020-11-16T20:00"></p><br>
+       <p class="w3-opacity "><i>enter the starting date of your tour</i></p>
+      <p><input class="w3-input " type="datetime-local" placeholder="Tour start date" required name="todate" value="2020-11-16T20:00"></p><br>
  	<p class="w3-opacity"><i>Passport</i></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Passport Number" required name="passport"></p><br>
             <p class="w3-opacity"><i> Room type</i></p>
      
   <label for="roomtype">Choose your room type:</label>
-  <select id="roomtype" name="cars">
+  <select id="roomtype" name="roomtype">
     <option value="classic">Classic</option>
     <option value="special">Special</option>
     <option value="deluxe">Deluxe</option>
-   
   </select>
-</form>
-
-<FORM NAME="form1" action = "addtocart" METHOD="POST">
-	<input type = "hidden" name = "userid" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "packageid" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "numberofpeople" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "fromdate" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "todate" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "transport" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "bookingid" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "totaldays" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "price" value="<%=resultSet.getString("amount") %>">
-	<input type = "hidden" name = "roomtype" value="<%=resultSet.getString("packageid") %>">
-	<input type = "hidden" name = "destination" value="<%=resultSet.getString("packageid") %>">
+  <input type = "hidden" name = "userid" value="<%=session.getAttribute("userid") %>">
+	<input type = "hidden" name = "packageid" value="<%=session.getAttribute("packageid") %>">
+	<input type = "hidden" name = "totaldays" value="<%=session.getAttribute("numberofdays") %>">
+	<input type = "hidden" name = "price" value="<%=session.getAttribute("amount") %>">
+	<input type = "hidden" name = "destination" value="<%=session.getAttribute("destination") %>">
 	<br><br><button type="submit" class="button" style=text-align:centre;>Add To Cart</button><br><br>
-</FORM>
-<% 
+</form>
+</div>
+</div>
+</div>
+     <% 
 }
 
 } catch (Exception e) {
 	e.printStackTrace();
 }
 %>
-     
 
-      <h2 class="w3-wide w3-center">SIMILAR PACKAGES</h2>
-      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b> Exciting New York</b></p>
-           
-            <p>BDSF SKD HFKSD HGLSDS DLAE LA[SDAS KDKS SKD</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">BOOK NOW</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Paris</b></p>
-           
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">BOOK NOW</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>San Francisco</b></p>
-           
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">BOOK NOW</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ticket Modal -->
-  <div id="ticketModal" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-teal w3-center w3-padding-32">
-        <span onclick="document.getElementById('ticketModal').style.display='none'"
-       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
-      </header>
-      <div class="w3-container">
-        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
-        <input class="w3-input w3-border" type="text" placeholder="How many?">
-        <p><label><i class="fa fa-user"></i> Send To</label></p>
-        <input class="w3-input w3-border" type="text" placeholder="Enter email">
-        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
-        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
-        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Contact Section -->
+ <!-- The Contact Section -->
   <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
     <h2 class="w3-wide w3-center">CONTACT</h2>
     <p class="w3-opacity w3-center"><i>drop your queries here.</i></p>
@@ -266,12 +210,12 @@ body {font-family: "Lato", sans-serif}
       </div>
     </div>
   </div>
- 
+  
 <!-- End Page Content -->
-</div>
+
 
 <!-- Image of location/map -->
-<img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+<img src="images/4.jpg" class="w3-image w3-greyscale-min" style="width:100%">
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
@@ -283,6 +227,9 @@ body {font-family: "Lato", sans-serif}
   <i class="fa fa-linkedin w3-hover-opacity"></i>
  
 </footer>
+
+
+
 
 <script>
 // Automatic Slideshow - change image every 4 seconds

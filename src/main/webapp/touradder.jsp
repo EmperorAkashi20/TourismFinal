@@ -47,19 +47,19 @@
     </tr>
     <tr>
     <td>Image 1 for slide show </td>
-     <td><input type="text" name="imagePath" /></td>
+     <td><input type="text" name="imagePath1" /></td>
      <td>Select Image:</td>
   	<td><input type="file" name = "imageforsone" /></td>
     </tr>
     <tr>
      <td>Image 2 for slide show </td>
-     <td><input type="text" name="imagePath" /></td>
+     <td><input type="text" name="imagePath2" /></td>
      <td>Select Image:</td>
   	<td><input type="file" name = "imageforstwo" /></td>
     </tr>
      <tr>
      <td>Image 3 for slide show </td>
-     <td><input type="text" name="imagePath" /></td>
+     <td><input type="text" name="imagePath3" /></td>
      <td>Select Image:</td>
   	<td><input type="file" name = "imageforsthree" /></td>
     </tr>

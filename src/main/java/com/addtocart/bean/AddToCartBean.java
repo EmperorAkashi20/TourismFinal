@@ -11,6 +11,14 @@ public class AddToCartBean {
 	private String totalDays;
 	private String price;
 	private String roomtype;
+	private String passportNumber;
+	
+	public String getPassportNumber() {
+		return passportNumber;
+	}
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
 	public String getRoomtype() {
 		return roomtype;
 	}

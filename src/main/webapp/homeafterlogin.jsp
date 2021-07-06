@@ -36,12 +36,12 @@
 
 <style>
 * {
-  box-sizing: ;
+  box-sizing: border-box;
 }
 
 body {
  font-family: Arial, Helvetica, sans-serif;
-  margin: ;
+  margin: 2;
   background:""
 }
 
@@ -71,6 +71,7 @@ body {
 /* Style the navigation bar links */
 .navbar a {
   float: left;
+  display: block;
   color: black;
   text-align: center;
   padding: 14px 20px;
@@ -79,7 +80,7 @@ body {
 
 /* Style the button */
 .button {
-  border: 0px white;
+  border: 2px white;
   color: black;
   padding: 15px 32px;
   text-align: center;
@@ -100,9 +101,10 @@ body {
 /* Right-aligned link */
 .navbar a.right {
   float: right;
+  display: block;
   color: black;
   text-align: center;
-  padding: ;
+  padding: 14px 20px;
   text-decoration: none;
 }
 
@@ -118,7 +120,7 @@ body {
   color: white;
 }
 
-
+.sidebar-image-gallery { width: 210px; }
 
 /* Main column */
 .main {   
@@ -204,12 +206,6 @@ span.psw {
   cursor: pointer;
 }
 
-.myDiv {
-/*   background-color: #e0e0d1;
- */  text-align: center;
-}
-
-
 /* Add Zoom Animation */
 .animate {
  -webkit-animation: animatezoom 0.6s;
@@ -270,8 +266,7 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
 
 <div class="header">
   <h1>Holiday Point</h1>
-  <p>TAKE only MEMORIES,leave only FOOTPRINTS</p>
-  	
+  <p>   TAKE only MEMORIES,leave only FOOTPRINTS</p>	
 </div>
 
 <div class="navbar">
@@ -281,68 +276,14 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
   <a href="#">DETAILS</a>
   <a href="#">ABOUT</a>
   
-  <a href="#" class="right"><button onclick="document.getElementById('id01').style.display='block'" >log in</button></a>
-  <a href="#" class= "right"> <button onclick="document.getElementById('id02').style.display='block'" >Create Account</button></a>
+  
+  <a href="#" class= "right"> <button onclick="location.href='home.jsp'" >Logout</button></a>
+  <a  class="right">Hello, <%=session.getAttribute("email") %></a>
+  <a  class="right">Hello, <%=session.getAttribute("userid") %></a>
 </div>
 
-<div id="id01" class="modal">
-  <form class="modal-content animate" action="login" method="post">
-    <div class="container">
-      <label for="Email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-      <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-      <input type = "hidden" name = "packageid" value="<%
-	try{ 
-		connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-		statement1=connection.createStatement();
-		String sql1 ="SELECT * FROM userdetails";
-		resultSet1 = statement.executeQuery(sql1);	
-		while(resultSet.next()){
-%>
-<%=resultSet.getString("userId") %>
-<% 
-}
-
-} catch (Exception e) {
-	e.printStackTrace();
-}
-%>">
-    </div>
-    
-    <div class="container">
-     <button type="submit">Login</button>
-      <button type="button"  onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-
-<div id="id02" class="modal">
-	<form class="modal-content animate" action="register" method="post">
-		<div class="container">
-			<label for="name"><b>Name</b></label>
-			<input type="text" placeholder="Enter Name" name="name" required>
-			<label for="email"><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" required>
-			<label for="contact"><b>Contact</b></label>
-			<input type="text" placeholder="Enter Phone" name="contact" required>
-			<label for="password"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="password" required>
-			<label for="rePass"><b>Repeat Password</b></label>
-			<input type="password" placeholder="Repeat Password" name="rePass" required>
-			<p>By creating an account you agree to our <a href="#">Terms and Privacy Conditions</a>.</p>
-			
-			<div class="container">
-				<button type="submit">Sign Up</button>
-				<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-			</div>
-		</div>
-	</form>
-</div>
-
-<div class = "myDiv" ><h2>TOURS AND PACKAGES</h2>
-<h4>Don't Miss These packages and deals</h4></div>
+<div style="text-align:center"><h2>TOURS AND PACKAGES</h2></div>
+<div style="text-align:center"><h4>Don't Miss These packages and deals</h4></div>
 
 
 
@@ -360,8 +301,23 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
  <img src="<%=resultSet.getString("image")%>" width="60%" height="600"></div>
  <p><%=resultSet.getString("amount") %></p>
  <p><%=resultSet.getString("shortdesc") %></p><br>
- <button class="button" onclick="document.getElementById('id01').style.display='block'" >Package details</button>
+
+<FORM NAME="form1" action = "fetchpackage" METHOD="POST">
+	<input type = "hidden" name = "packageid" value="<%=resultSet.getString("packageid") %>">
+	<input type = "hidden" name = "amount" value="<%=resultSet.getString("amount") %>">
+	<input type = "hidden" name = "destination" value="<%=resultSet.getString("title") %>">
+	<input type = "hidden" name = "description" value="<%=resultSet.getString("description") %>">
+	<input type = "hidden" name = "numberofdays" value="<%=resultSet.getString("numberofdays") %>">
+	<input type = "hidden" name = "image" value="<%=resultSet.getString("image") %>">
+	<input type = "hidden" name = "publishdate" value="<%=resultSet.getString("publishdate") %>">
+	<input type = "hidden" name = "shortdesc" value="<%=resultSet.getString("shortdesc") %>">
+	<input type = "hidden" name = "numberofhotels" value="<%=resultSet.getString("numberofhotels") %>">
+	<input type = "hidden" name = "imageforsone" value="<%=resultSet.getString("imageforsone") %>">
+	<input type = "hidden" name = "imageforstwo" value="<%=resultSet.getString("imageforstwo") %>">
+	<input type = "hidden" name = "imageforsthree" value="<%=resultSet.getString("imageforsthree") %>">
+ <button class="button" onclick="location.href='booking.jsp'" >Package details</button>
  <br>
+ </FORM>
 <% 
 }
 

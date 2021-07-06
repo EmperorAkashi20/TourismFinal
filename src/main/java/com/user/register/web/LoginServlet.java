@@ -40,18 +40,22 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String userId = request.getParameter("userid");
 		
 		LoginBean loginBean = new LoginBean();
 		loginBean.setEmail(email);
 		loginBean.setPassword(password);
+		loginBean.setUserId(userId);
 		
 		LoginDao loginDao = new LoginDao();
 		if(loginDao.validate(loginBean)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
-			response.sendRedirect("booking.jsp");
+			session.setAttribute("userid", userId);
+			System.out.println(userId);
+			response.sendRedirect("homeafterlogin.jsp");
 		} else {
-			response.sendRedirect("allotment.jsp");
+			response.sendRedirect("home.jsp");
 		}
 	}
 

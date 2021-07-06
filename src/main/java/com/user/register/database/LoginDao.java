@@ -20,6 +20,11 @@ public class LoginDao {
 	private String dbDriver = "com.mysql.cj.jdbc.Driver";
 	public static String encryptedpswd;
 	
+	public static String name;
+	public static String contact;
+	public static String email;
+	public static String userId;
+	
 	public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
     {  
         // Static getInstance method is called with hashing SHA  
@@ -95,6 +100,8 @@ public class LoginDao {
 			
 			ResultSet rs = ps.executeQuery();
 			status = rs.next();
+			
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

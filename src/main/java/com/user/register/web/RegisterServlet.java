@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.user.register.bean.RegisterBean;
 import com.user.register.database.RegiusterDao;
@@ -61,9 +62,11 @@ public class RegisterServlet extends HttpServlet {
 		
 		RegiusterDao registerDao = new RegiusterDao();
 		if(registerDao.validate(registerBean)) {
-			response.sendRedirect("loginsuccess.jsp");		
+			HttpSession session = request.getSession(true);
+			session.setAttribute("email", email);
+			response.sendRedirect("homeafterlogin.jsp");		
 			} else {
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("home.jsp");
 			}
 	}
 

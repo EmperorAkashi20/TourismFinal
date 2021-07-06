@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 
 import java.sql.SQLException;
 
-import com.mysql.cj.Session;
 import com.user.register.bean.RegisterBean;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

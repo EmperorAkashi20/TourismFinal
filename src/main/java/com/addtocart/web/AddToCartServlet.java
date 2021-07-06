@@ -49,6 +49,7 @@ public class AddToCartServlet extends HttpServlet {
 		String price = request.getParameter("price");
 		String roomType = request.getParameter("roomtype");
 		String destination = request.getParameter("destination");
+		String passportNumber = request.getParameter("passport");
 		
 		AddToCartBean addToCart = new AddToCartBean();
 		addToCart.setUserId(userId);
@@ -62,6 +63,7 @@ public class AddToCartServlet extends HttpServlet {
 		addToCart.setPrice(price);
 		addToCart.setDestination(destination);
 		addToCart.setRoomtype(roomType);
+		addToCart.setPassportNumber(passportNumber);
 		
 		AddToCartDao addToCartDao = new AddToCartDao();
 		if(addToCartDao.validate(addToCart)) {

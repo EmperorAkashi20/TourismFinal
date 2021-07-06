@@ -53,7 +53,7 @@ public class AddToCartDao {
 		Connection con = getConnection();
 		boolean status = false;
 		
-		String sql = "insert into bookingdetails (userid, packageid, numberofpeople, fromdate, todate, transport, bookingid, totalDays, price, roomtype, destination)" +"values(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into bookingdetails (userid, packageid, numberofpeople, fromdate, todate, transport, bookingid, totalDays, price, roomtype, destination, passportnumber)" +"values(?,?,?,?,?,?,?,?,?,?,?,?)";
 ;
 		
 		PreparedStatement ps;
@@ -65,12 +65,13 @@ public class AddToCartDao {
 			ps.setString(3, addToCartBean.getNumberOfPeople());
 			ps.setString(4, addToCartBean.getFromdate());
 			ps.setString(5, addToCartBean.getToDate());
-			ps.setString(6, addToCartBean.getTransport());
+			ps.setString(6, "Flight");
 			ps.setString(7, bookingId);
 			ps.setString(8, addToCartBean.getTotalDays());
 			ps.setString(9, addToCartBean.getPrice());
 			ps.setString(10, addToCartBean.getRoomtype());
 			ps.setString(11, addToCartBean.getDestination());
+			ps.setString(12, addToCartBean.getPassportNumber());
 			
 			System.out.println(ps);			
 			ps.execute();

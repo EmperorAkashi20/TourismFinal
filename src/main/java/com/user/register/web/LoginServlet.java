@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(userId);
 			response.sendRedirect("homeafterlogin.jsp");
 		} else {
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("index.jsp");
 		}
 	}
 

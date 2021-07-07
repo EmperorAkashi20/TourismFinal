@@ -1,3 +1,32 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.PreparedStatement" %>
+
+<%
+	String dbUrl = "jdbc:mysql://localhost:3306/UserTable";
+	String dbUserName = "root";
+	String dbPassword = "\"NewPassword@2018\"";
+	String dbDriver = "com.mysql.cj.jdbc.Driver";
+	try {
+		Class.forName(dbDriver);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultSet = null;
+	
+	Statement statement1 = null;
+	ResultSet resultSet1 = null;
+%>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -6,45 +35,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Shopping Cart Checkout Widget</title>
+  <title>Transaction History</title>
   <link rel="stylesheet" href="css/style.css">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-</head>
-<body>
-  <div class="cart">
-    <div class="cart-top">
-      <h2 class="cart-top-title">Checkout</h2>
-      <div class="cart-top-info">Destination</div>
-    </div>
-
-    <ul>
-      <li class="cart-item">
-        <span class="cart-item-pic">
-          <img src="">
-        </span>
-        Item #1
-        <span class="cart-item-desc">Destination:</span>
-        <span class="cart-item-price">$1600.80</span>
-      </li>
-      <li class="cart-item">
-        <span class="cart-item-pic">
-          <img src="">
-        </span>
-        
-  
-    </ul>
-
-    <div class="cart-bottom">
-      Total: $54.80
-      <a href="#" class="cart-button">Continue</a>
-    </div>
-  </div>
-
-
-  </div>
-</body>
-</html>
-<style>
+  <style>
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -78,6 +72,14 @@ body {
 
 ol, ul {
   list-style: none;
+  padding: 30px;
+}
+#myTable {
+  border-collapse: collapse;
+  width: 1200px;
+  border: 2px solid #ddd;
+  font-size: 18px;
+ text-align: center;
 }
 
 blockquote, q {
@@ -92,7 +94,7 @@ q:before, q:after {
 
 table {
   border-collapse: collapse;
-  border-spacing: 0;
+  border-spacing: 10;
 }
 
 .about {
@@ -155,7 +157,7 @@ body {
 
 .cart {
   margin: 50px auto;
-  width: 800px;
+  width: 1200px;
 
   overflow: hidden;
   color: white;
@@ -197,32 +199,13 @@ body {
   float: right;
 }
 
-.cart-item:first-child {
-  margin-top: 2px;
+.cart-item {
+  margin-top: 10px;
   padding-top: 11px;
-}
-
-.cart-item-pic {
-  position: relative;
-  float: center;
-  margin: -2px 12px 0 -7px;
+  
 }
 
 
-.cart-item-desc {
-  display: block;
-  font-size: 12px;
-  font-weight: normal;
-  color: #b8c6cc;
-}
-
-.cart-item-price {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  margin-top: -10px;
-  color: #eee;
-}
 
 .cart-bottom {
   line-height: 40px;
@@ -266,3 +249,61 @@ body {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.05);
 }
 </style>
+</head>
+<body>
+  <div class="cart">
+    <div class="cart-top">
+      <h2 class="cart-top-title">Transaction History</h2>
+    </div>
+<%
+	try{ 
+		connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
+		statement=connection.createStatement();
+		String userIdt = session.getAttribute("userid").toString();
+		String sql ="SELECT * FROM transactiondetails where userId=?";
+		PreparedStatement ps;
+		ps = connection.prepareStatement(sql);
+		ps.setString(1, userIdt);
+		resultSet = ps.executeQuery();	
+		while(resultSet.next()){
+%>
+ 
+      <table id="myTable" class="cart-item">
+<thead>
+  <tr class="header">
+    <th style="width:20%;">Destination</th>
+    <th style="width:20%;">Amount Paid</th>
+    <th style="width:20%;">Passport Number</th>
+    <th style="width:20%;">Card Number</th>
+    <th style="width:10%;">Card Type</th>
+    <th style="width:10%;">Travel Date</th>
+  </tr>
+  </thead>
+		
+  <tr>
+    <td class="tablecontent"><%=resultSet.getString("destination") %><br></td>
+    <td class="tablecontent"><%=resultSet.getString("amountpaid") %><br></td>
+    <td class="tablecontent"><%=resultSet.getString("passportnumber") %><br></td>
+    <td class="tablecontent"><%=resultSet.getString("cardnumber") %><br></td>
+    <td class="tablecontent"><%=resultSet.getString("cardtype") %><br></td>
+  </tr>
+</table>
+      
+<% 
+}
+
+} catch (Exception e) {
+	e.printStackTrace();
+}
+%>
+
+    <div class="cart-bottom">
+      Total: $54.80
+      <a href="#" class="cart-button">Continue</a>
+    </div>
+  </div>
+
+
+  </div>
+</body>
+</html>

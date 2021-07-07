@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 			session.setAttribute("email", email);
 			response.sendRedirect("homeafterlogin.jsp");		
 			} else {
-				response.sendRedirect("home.jsp");
+				response.sendRedirect("signup.jsp");
 			}
 	}
 

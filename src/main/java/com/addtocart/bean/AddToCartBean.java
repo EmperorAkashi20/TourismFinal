@@ -12,7 +12,14 @@ public class AddToCartBean {
 	private String price;
 	private String roomtype;
 	private String passportNumber;
+	private String finalPrice;
 	
+	public String getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(String finalPrice) {
+		this.finalPrice = finalPrice;
+	}
 	public String getPassportNumber() {
 		return passportNumber;
 	}

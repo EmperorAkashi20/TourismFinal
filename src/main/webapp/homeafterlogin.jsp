@@ -272,7 +272,7 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
 <div class="navbar">
   <a href="#" class="active">Home</a>
   <a href="#">CART</a>
-  <a href="#">PREVIOUS BOOKINGS</a>
+  <a href="cart.jsp">PREVIOUS BOOKINGS</a>
   <a href="#">DETAILS</a>
   <a href="#">ABOUT</a>
   
@@ -299,7 +299,7 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
  <h2><%=resultSet.getString("title") %></h2>
  <div class="fakeimg">
  <img src="<%=resultSet.getString("image")%>" width="60%" height="600"></div>
- <p><%=resultSet.getString("amount") %></p>
+ <p>$<%=resultSet.getString("amount") %></p>
  <p><%=resultSet.getString("shortdesc") %></p><br>
 
 <FORM NAME="form1" action = "fetchpackage" METHOD="POST">

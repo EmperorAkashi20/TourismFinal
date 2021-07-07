@@ -138,7 +138,8 @@ h2 {
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label for="Email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" required>
-          <input type = "hidden" name = "userid" value="<%=resultSet.getString("userid") %>">
+          <input type = "hidden" name = "userid" value="<%=resultSet.getString("userId") %>">
+          <input type = "hidden" name = "userid" value="<%=resultSet.getString("email") %>">
         </div>
         <br/>
         <br/>

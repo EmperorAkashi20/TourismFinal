@@ -20,10 +20,6 @@ public class LoginDao {
 	private String dbDriver = "com.mysql.cj.jdbc.Driver";
 	public static String encryptedpswd;
 	
-	public static String name;
-	public static String contact;
-	public static String email;
-	public static String userId;
 	
 	public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
     {  
@@ -79,7 +75,7 @@ public class LoginDao {
 	public boolean validate(LoginBean loginBean) {
 		
 		try {
-			encryptedpswd = toHexString(getSHA(LoginBean.getPassword()));
+			encryptedpswd = toHexString(getSHA(loginBean.getPassword()));
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -95,7 +91,7 @@ public class LoginDao {
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, LoginBean.getEmail());
+			ps.setString(1, loginBean.getEmail());
 			ps.setString(2, encryptedpswd);
 			
 			ResultSet rs = ps.executeQuery();

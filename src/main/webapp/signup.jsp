@@ -79,11 +79,11 @@ h2 {
 }
 /*sign-in-btn*/
 .sign-in-btn{
-  width: 100%;
+ width: 100%;
   height: 75px;
-  position:absolute;
-  bottom:0;
-  border-radius: 0px;
+  position:relative;
+  bottom:-100;
+  border-radius: 50px;
   background-color: rgba(63, 78, 191, 1);
 }
 </style>
@@ -101,39 +101,35 @@ h2 {
     </div><!--/.back-img-->
     <div class="form-section">
      
-      <form action="#">
+      <form action="register" method="post">
         <!--Email-->
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" id="sample3">
-          <label class="mdl-textfield__label" for="sample3">Email</label>
+			<input type="text" placeholder="Enter Name" name="name" required>
+			<label for="name"><b>Name</b></label>
         </div>
-        <br/>
         <br/>
          <!--Name-->
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" id="sample3">
-          <label class="mdl-textfield__label" for="sample3">Name</label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">    
+			<input type="text" placeholder="Enter Email" name="email" required>
+			 <label for="email"><b>Email</b></label>
         </div>
-        <br/>
-        <br/>
+        <br/>     
          <!--Contact-->
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" id="sample3">
-          <label class="mdl-textfield__label" for="sample3">Contact</label>
+			<input type="text" placeholder="Enter Phone" name="contact" required>
+			         <label for="contact"><b>Contact</b></label>
         </div>
-        <br/>
         <br/>
          <!--Password-->
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" id="sample3">
-          <label class="mdl-textfield__label" for="sample3">Password</label>
+			<input type="password" placeholder="Enter Password" name="password" required>
+			         <label for="password"><b>Password</b></label>
         </div>
-        <br/>
-        <br/>
+        <br/>     
         <!--Re-Password-->
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input pattern=".{8,}" class="mdl-textfield__input" type="password" id="sample3">
-          <label class="mdl-textfield__label" for="sample3">Re-Password</label>
+			<input type="password" placeholder="Repeat Password" name="rePass" required>
+			          <label for="rePass"><b>Repeat Password</b></label>
         </div>
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -141,12 +137,13 @@ h2 {
         </div>
         <br/>
         <br/>
+        <button class="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">
+      Sign Up
+    </button>
       </form>
     </div><!--/.form-section-->
     
-    <button class="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">
-      Sign Up
-    </button><!--/button-->
+    <!--/button-->
  </div><!--/.signin-->
 </body>
 </html>     

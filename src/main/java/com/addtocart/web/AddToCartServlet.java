@@ -50,6 +50,7 @@ public class AddToCartServlet extends HttpServlet {
 		String roomType = request.getParameter("roomtype");
 		String destination = request.getParameter("destination");
 		String passportNumber = request.getParameter("passport");
+		String finalAmount = request.getParameter("finalprice");
 		
 		AddToCartBean addToCart = new AddToCartBean();
 		addToCart.setUserId(userId);
@@ -64,6 +65,7 @@ public class AddToCartServlet extends HttpServlet {
 		addToCart.setDestination(destination);
 		addToCart.setRoomtype(roomType);
 		addToCart.setPassportNumber(passportNumber);
+		addToCart.setFinalPrice(finalAmount);
 		
 		AddToCartDao addToCartDao = new AddToCartDao();
 		if(addToCartDao.validate(addToCart)) {
@@ -71,9 +73,14 @@ public class AddToCartServlet extends HttpServlet {
 			session.setAttribute("packageid", packageId);
 			session.setAttribute("destination", destination);
 			session.setAttribute("price", price);
-			response.sendRedirect("booking.jsp");
+			session.setAttribute("numberofpeople", numberOfPeople);	
+			session.setAttribute("fromdate", fromDate);
+			session.setAttribute("todate", toDate);
+			session.setAttribute("passportnumber", passportNumber);
+			session.setAttribute("finalprice", finalAmount);
+			response.sendRedirect("payment.jsp");
 		} else {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("booking.jsp");
 		}
 	}
 

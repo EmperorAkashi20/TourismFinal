@@ -23,6 +23,8 @@ public class RegiusterDao {
 	private String dbPassword = "\"NewPassword@2018\"";
 	private String dbDriver = "com.mysql.cj.jdbc.Driver";	
 	public static String encryptedpswd;
+	public static String name;
+	public static String userId;
 	
 	public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
     {  
@@ -97,7 +99,7 @@ public boolean validate(RegisterBean registerBean) {
 		Connection con = getConnection();
 		boolean status = false;
 		
-		String sql = "insert into UserDetails (userid, name, email, password, contact, address, nameOnCard, cardNumber, expiry)"+"values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into UserDetails (userid, name, email, password, contact, address, nameoncard, cardnumber, expm,city,state,zip,expy,cvv)"+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement ps;
 		
@@ -113,6 +115,12 @@ public boolean validate(RegisterBean registerBean) {
 				ps.setString(7, "");
 				ps.setString(8, "");
 				ps.setString(9, "");
+				ps.setString(10, "");
+				ps.setString(11, "");
+				ps.setString(12, "");
+				ps.setString(13, "");
+				ps.setString(14, "");
+				
 				
 				ps.execute();
 				status = true;

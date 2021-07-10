@@ -1,4 +1,4 @@
-package com.user.register.web;
+package com.modifypackage.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,22 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.user.register.bean.LoginBean;
-import com.user.register.database.LoginDao;
+import com.modifypackage.bean.ModifyPackageBean;
+import com.modifypackage.database.ModifyPackageDao;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ModifyPackageServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/modify")
+public class ModifyPackageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public ModifyPackageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,24 +37,25 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String userId = request.getParameter("userid");
+		String packageid = request.getParameter("packageid");
+		String amount = request.getParameter("amount");
+		String numberofdays = request.getParameter("numberofdays");
+		String numberofhotels = request.getParameter("numberofhotels");
+		String title = request.getParameter("title");
 		
-		LoginBean loginBean = new LoginBean();
-		loginBean.setEmail(email);
-		loginBean.setPassword(password);
-		loginBean.setUserId(userId);
+		ModifyPackageBean modify = new ModifyPackageBean();
 		
-		LoginDao loginDao = new LoginDao();
-		if(loginDao.validate(loginBean)) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("email", email);
-			session.setAttribute("userid", userId);
-			System.out.println(userId);
-			response.sendRedirect("welcomepage.jsp");
+		modify.setPackageid(packageid);
+		modify.setAmount(amount);
+		modify.setNumberofhotels(numberofhotels);
+		modify.setNumberofdays(numberofdays);
+		modify.setTitle(title);
+		
+		ModifyPackageDao modifydao = new ModifyPackageDao();
+		if(modifydao.modifypackage(modify)) {
+			response.sendRedirect("touradder.jsp");
 		} else {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("adminlogin.jsp");
 		}
 	}
 

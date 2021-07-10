@@ -59,7 +59,7 @@ public class AddToCartDao {
 		boolean status = false;
 		
 		String sql = "insert into bookingdetails (userid, packageid, numberofpeople, fromdate, todate, transport, bookingid, totalDays, price, roomtype, destination, passportnumber, finalprice)" +"values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-;
+
 		
 		PreparedStatement ps;
 		

@@ -28,7 +28,15 @@
 %>
 
 
+<% try{ 
+connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
+statement=connection.createStatement();
+String sql ="SELECT * FROM packages";
 
+resultSet = statement.executeQuery(sql);
+
+%>
+  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +99,6 @@ body {font-family: "Lato", sans-serif}
     <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BOOKING DETAILS</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
      <div style="text-align:right">Hello, <%=session.getAttribute("email") %></div>
-     <div style="text-align:right">Hello, <%=session.getAttribute("userid") %></div>
     <div class="w3-dropdown-hover w3-hide-small">
      
       </div>
@@ -149,15 +156,7 @@ body {font-family: "Lato", sans-serif}
       </div>
     </div>
   </div>
-<% try{ 
-connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-statement=connection.createStatement();
-String sql ="SELECT * FROM packages";
 
-resultSet = statement.executeQuery(sql);
-while(resultSet.next()){
-%>
-  
   <!-- The Tour bSection -->
   <div class="w3-black" id="tour">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
@@ -180,12 +179,14 @@ while(resultSet.next()){
     <option value="special">Special</option>
     <option value="deluxe">Deluxe</option>
   </select>
-  <input type = "hidden" name = "userid" value="<%=session.getAttribute("userid") %>">
+ 
+	<br><br><button type="submit" class="button" style=text-align:centre; >Confirm And Pay</button><br><br>
+	 <% while(resultSet.next()){ %>
+  	<input type = "hidden" name = "userid" value="<%=session.getAttribute("userid") %>">
 	<input type = "hidden" name = "packageid" value="<%=session.getAttribute("packageid") %>">
 	<input type = "hidden" name = "totaldays" value="<%=session.getAttribute("numberofdays") %>">
 	<input type = "hidden" name = "price" value="<%=session.getAttribute("amount") %>">
 	<input type = "hidden" name = "destination" value="<%=session.getAttribute("destination") %>">
-	<br><br><button type="submit" class="button" style=text-align:centre; >Confirm And Pay</button><br><br>
 </form>
 </div>
 </div>

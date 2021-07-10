@@ -84,7 +84,7 @@ public class TransactionServlet extends HttpServlet {
 		if(transactionDao.validate(transactionbean)) {
 			if(transactionDao.billingaddress(loginbean)) {
 				HttpSession session = request.getSession(true);
-				response.sendRedirect("homeafterlogin.jsp");		
+				response.sendRedirect("loginsuccess.jsp");		
 				} else {
 					response.sendRedirect("payment.jsp");
 				}

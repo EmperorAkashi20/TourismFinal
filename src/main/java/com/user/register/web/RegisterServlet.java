@@ -64,7 +64,7 @@ public class RegisterServlet extends HttpServlet {
 		if(registerDao.validate(registerBean)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
-			response.sendRedirect("homeafterlogin.jsp");		
+			response.sendRedirect("welcomepage.jsp");		
 			} else {
 				response.sendRedirect("signup.jsp");
 			}

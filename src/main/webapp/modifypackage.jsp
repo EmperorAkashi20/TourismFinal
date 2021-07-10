@@ -242,56 +242,30 @@ body {
 </head>
 <body>
 
-<div class="cart">
-    <div class="cart-top">
-      <h2 class="cart-top-title">Current Packages</h2>
-    </div>
+
 <%
 	try{ 
+		System.out.println(session.getAttribute("packageid11"));
 		connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
 		statement=connection.createStatement();
-		String sql ="SELECT * FROM packages";
+		String packageid1 = session.getAttribute("packageid11").toString();
+		String sql ="SELECT * FROM packages where packageid = ?";
 		PreparedStatement ps;
 		ps = connection.prepareStatement(sql);
-		resultSet = ps.executeQuery();	
-		while(resultSet.next()){
-			
-
+		ps.setString(1,packageid1);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()){
 %>
- <form action="modify" method="post">
- <table id="myTable" class="cart-item">
-  <tr class="header">
-    <td style="width:20%">Package ID</td>
-    <td style="width:20%">Title</td>
-    <td style="width:20%">Amount</td>
-    <td style="width:20%">Number of Days</td>
-    <td style="width:20%">Number Of Hotels</td>
-  </tr>
-		
-  <tr>
-  <td><input type="text" name="packageid" value="<%=resultSet.getString("packageid") %>"></td>
-  <td><input type="text" name="title" value="<%=resultSet.getString("title") %>"></td>    
-  <td><input type="text" name="amount" value="<%=resultSet.getString("amount") %>"></td>
-  <td><input type="text" name="numberofdays" value="<%=resultSet.getString("numberofdays") %>"></td>
-  <td><input type="text" name="numberofhotels" value="<%=resultSet.getString("numberofhotels") %>"></td>    
-  </tr>
-</table>
+ 
 
-<% } %>
-
-<div class="cart-bottom">
-      <a href="touradder.jsp" class="cart-button">Modify</a>
-    </div>
-    </form>
-  </div>
-  
+      
 <% 
+}
+
 } catch (Exception e) {
 	e.printStackTrace();
 }
 %>
-
-    
 
  <div align="center" class="cart">
   <div class="cart-top">
@@ -301,7 +275,7 @@ body {
    <table id = "mytable" class="cart-item">
     <tr style="width:20%">
      <td >Package Id</td>
-     <td ><input type="text" name="packageid" /></td>
+     <td ><input type="text" name="packageid" value="<%=resultSet.getString("packageid")%>"/></td>
     </tr>
     <tr>
      <td>Destination</td>

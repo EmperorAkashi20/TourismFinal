@@ -11,7 +11,7 @@
 body{
   padding: 50px;
   font-family: 'Roboto', sans-serif;
-  background-image: url("images/54.jpg");
+  background-image: url("images/bg.jpg");
 }
 /*Sign In Form*/
 .signin{

@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Holiday Point</title>
 </head>
 <body>
 <div align ="center">
-<h1>you have login Successfully</h1>
+<h1>you have successfully booked your tour.<br> We will contact you soon.</h1>
+<button onclick="location.href='homeafterlogin.jsp'">To Home</button>
 </div>
 </body>
 </html>

@@ -77,7 +77,7 @@ ol, ul {
 #myTable {
   border-collapse: collapse;
   width: 1200px;
-  border: 2px solid #ddd;
+  border: px solid #ddd;
   font-size: 18px;
  text-align: center;
 }
@@ -94,7 +94,7 @@ q:before, q:after {
 
 table {
   border-collapse: collapse;
-  border-spacing: 10;
+  border-spacing: 0;
 }
 
 .about {
@@ -152,7 +152,7 @@ table {
 body {
   font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
   color: #404040;
-  background: #eee;
+  background-image: url("images/bg.jpg");
 }
 
 .cart {
@@ -286,6 +286,8 @@ body {
     <td class="tablecontent"><%=resultSet.getString("passportnumber") %><br></td>
     <td class="tablecontent"><%=resultSet.getString("cardnumber") %><br></td>
     <td class="tablecontent"><%=resultSet.getString("cardtype") %><br></td>
+        <td class="tablecontent"><%=resultSet.getString("traveldate") %><br></td>
+    
   </tr>
 </table>
       
@@ -298,12 +300,10 @@ body {
 %>
 
     <div class="cart-bottom">
-      Total: $54.80
-      <a href="#" class="cart-button">Continue</a>
+      <a href="homeafterlogin.jsp" class="cart-button">Back to Home</a>
     </div>
   </div>
 
 
-  </div>
 </body>
 </html>

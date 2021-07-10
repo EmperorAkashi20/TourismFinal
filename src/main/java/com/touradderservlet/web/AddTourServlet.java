@@ -123,9 +123,9 @@ public class AddTourServlet extends HttpServlet {
 		
 		TourAdderDao tourAdderDao = new TourAdderDao();
 		if(tourAdderDao.validate(tourAdderBean)) {
-			response.sendRedirect("loginsuccess.jsp");
+			response.sendRedirect("touradder.jsp");
 		} else {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("adminlogin.jsp");
 		}
 	}
 

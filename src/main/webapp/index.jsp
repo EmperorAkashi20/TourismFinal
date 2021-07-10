@@ -22,6 +22,8 @@
 	ResultSet resultSet = null;
 %>
 
+
+
 <html lang="en">
 <head>
 <title>Holidaypoint.com</title>
@@ -32,7 +34,7 @@
 body{
   padding: 50px;
   font-family: 'Roboto', sans-serif;
-  background-image: url("images/54.jpg");
+  background-image: url("images/bg.jpg");
 }
 /*Sign In Form*/
 .signin{
@@ -126,20 +128,12 @@ h2 {
      
       <form action="login" method="post">
         <!--Email-->
-        <%
-	try{ 
-		connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-		statement=connection.createStatement();
-		String sql ="SELECT * FROM userdetails";
-		resultSet = statement.executeQuery(sql);	
-		while(resultSet.next()){
-%>
+   
         
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label for="Email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" required>
-          <input type = "hidden" name = "userid" value="<%=resultSet.getString("userId") %>">
-          <input type = "hidden" name = "userid" value="<%=resultSet.getString("email") %>">
+         
         </div>
         <br/>
         <br/>
@@ -158,6 +152,16 @@ h2 {
         <button class="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">
       Sign In
     </button>
+         <%
+	try{ 
+		connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
+		statement=connection.createStatement();
+		String sql ="SELECT * FROM userdetails";
+		resultSet = statement.executeQuery(sql);	
+		while(resultSet.next()){
+%>
+ <input type = "hidden" name = "userid" value="<%=resultSet.getString("userId") %>">
+          <input type = "hidden" name = "userid" value="<%=resultSet.getString("email") %>">
       </form>
     </div><!--/.form-section-->
     <% 

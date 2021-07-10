@@ -271,15 +271,12 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
 
 <div class="navbar">
   <a href="#" class="active">Home</a>
-  <a href="#">CART</a>
   <a href="cart.jsp">PREVIOUS BOOKINGS</a>
-  <a href="#">DETAILS</a>
-  <a href="#">ABOUT</a>
+  <a href="welcomepage.jsp">ABOUT US</a>
   
   
-  <a href="#" class= "right"> <button onclick="location.href='home.jsp'" >Logout</button></a>
+  <a href="#" class= "right"> <button onclick="location.href='index.jsp'" >Logout</button></a>
   <a  class="right">Hello, <%=session.getAttribute("email") %></a>
-  <a  class="right">Hello, <%=session.getAttribute("userid") %></a>
 </div>
 
 <div style="text-align:center"><h2>TOURS AND PACKAGES</h2></div>
@@ -299,7 +296,7 @@ input[type=text]:focus, input[type=password], input[type=number]:focus {
  <h2><%=resultSet.getString("title") %></h2>
  <div class="fakeimg">
  <img src="<%=resultSet.getString("image")%>" width="60%" height="600"></div>
- <p>$<%=resultSet.getString("amount") %></p>
+ <p>$<%=resultSet.getString("amount") %>/ passenger</p>
  <p><%=resultSet.getString("shortdesc") %></p><br>
 
 <FORM NAME="form1" action = "fetchpackage" METHOD="POST">
